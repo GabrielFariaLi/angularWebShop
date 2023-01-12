@@ -2,47 +2,48 @@
   <a routerLink="home"> code with indiano</a>
   <!-- referencia o mat-menu com id #menu -->
   <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon [matBadge]="1" matBadgeColor="primary">shopping_cart</mat-icon>
+    <mat-icon
+      [matBadge]="itemsQuantidade"
+      [matBadgeHidden]="!itemsQuantidade"
+      matBadgeColor="primary"
+      >shopping_cart</mat-icon
+    >
   </button>
 
   <!-- menu que vai ser aberto mostrando os items do carrinho -->
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
-        <span class="mr-16">1 Items</span>
+        <span class="mr-16">{{ itemsQuantidade }} Items</span>
         <a routerLink="cart">Veja o carrinho</a>
       </div>
-      <div class="py-3">
-        <div class="flex justify-between font-light mb-2">
-          teclado x 1
-          <span class="font-bold">{{ "150" | currency : "R$" }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          teclado x 1
-          <span class="font-bold">{{ "150" | currency : "R$" }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          teclado x 1
-          <span class="font-bold">{{ "150" | currency : "R$" }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2">
-          teclado x 1
-          <span class="font-bold">{{ "150" | currency : "R$" }}</span>
+      <div *ngIf="cart.items.length" class="py-3">
+        <div
+          *ngFor="let item of cart.items"
+          class="flex justify-between font-light mb-2"
+        >
+          {{ item.name }} x {{ item.quantity }}
+          <span class="font-bold">{{ item.price | currency : "R$" }}</span>
         </div>
       </div>
       <div class="flex justify-between py-3 font-light">
         Total:
-        <span class="font-bold">{{ "450" | currency : "R$" }}</span>
+        <span class="font-bold">{{
+          getTotal(cart.items) | currency : "R$"
+        }}</span>
       </div>
       <div class="pt-3 flex justify-between">
-        <button class="bg-rose-600 text-white rounded-full w-9 h-9">
+        <button
+          (click)="onClearCart()"
+          class="bg-rose-600 text-white rounded-full w-9 h-9"
+        >
           <mat-icon>remove_shopping_cart</mat-icon>
         </button>
         <button
           routerLink="cart"
           class="bg-green-600 text-white rounded-full w-9 h-9"
         >
-          <mat-icon>remove_shopping_cart</mat-icon>
+          <mat-icon>shopping_cart</mat-icon>
         </button>
       </div>
     </div>
