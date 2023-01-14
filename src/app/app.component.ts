@@ -6,7 +6,7 @@ import { CartService } from "./services/cart.service";
   selector: "app-root",
   // template raiz e principal de como nossa aplicação se comporta, nesse caso definimos o navegador como componente que sempre sera reutilizado e logo abaixo temos os diversos componentes que sofrem alteração com base na route que o usuario entrar
   template: `
-    <app-header [cart]="cart" ]></app-header>
+    <app-header [cart]="cart"></app-header>
     <router-outlet></router-outlet>
   `,
   styles: [],

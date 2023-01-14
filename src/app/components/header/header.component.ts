@@ -9,11 +9,10 @@ import { CartService } from "src/app/services/cart.service";
 export class HeaderComponent {
   private _cart: Cart = { items: [] };
   itemsQuantidade = 0;
-  @Input()
-  get cart(): Cart {
+  @Input() get cart(): Cart {
     return this._cart;
   }
-  set Cart(cart: Cart) {
+  set cart(cart: Cart) {
     this._cart = cart;
     // transformar em array em quantidade
     this.itemsQuantidade = cart.items

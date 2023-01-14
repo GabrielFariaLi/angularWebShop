@@ -8,10 +8,8 @@
       </button>
 
       <mat-menu #sortByMenu="matMenu" class="p-6">
-        <button (click)="onSortUpdated('ascendente')" mat-menu-item>
-          ascendente
-        </button>
-        <button (click)="onSortUpdated('descendente')" mat-menu-item>
+        <button (click)="onSortUpdated('asc')" mat-menu-item>ascendente</button>
+        <button (click)="onSortUpdated('desc')" mat-menu-item>
           descendente
         </button>
       </mat-menu>
